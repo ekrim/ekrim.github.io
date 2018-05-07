@@ -5,6 +5,27 @@ date:   2018-01-03 23:10:45 -0800
 categories: tensorflow
 ---
 
+Hooks:
+- name softmax "softmax_tensor" for the logging_hook
+-  
+  where
+
+  what
+
+  exclusions
+
+
+Eval metric ops:
+  where
+    - estimator spec for eval
+
+  what 
+ 
+  exclusions
+  
+  
+
+
 Jekyll also offers powerful support for code snippets:
 
 {% highlight python %}
