@@ -5,7 +5,7 @@ date:   2018-08-06 23:10:45 -0800
 categories: computer vision,pytorch,homography 
 ---
 
-In 2016, Magic Leap released [__Deep Image Homography Estimation__][paper] in which a homography is estimated with a neural network instead of the traditional geometric approach. No code was released, so I was curious to play around with it.
+In 2016, Magic Leap released [*Deep Image Homography Estimation*][paper], in which a homography is estimated with a neural network instead of the traditional geometric approach. No code was released, so I was curious to play around with it. My code can be found on [__github__][github].
 
 A homography defines a transformation between two planes, including:
 - An image plane and a planar object.
@@ -22,10 +22,11 @@ The main contribution from the authors is a means to generate an endless supply 
 
 Notes:
 - The authors took the inverse of the homography between the original and perturbed corners, when they could have just estimated the homography between the perturbed and original.
-- This dataset is created to simulate two different views of the same object. It would not work for homographies defining rotational views, as in panorama stitching.   
+- This dataset is created to simulate two different views of the same object. It would not work for homographies defining rotational views, as in panorama stitching, since there would be very little overlap in the patches.
 - The authors did not mention scaling the corner perturbations, but I found dividing by 32 and putting a tanh layer on the output of the network was necessary for training.
 
-
+I implemented the regression form of their network, and followed the dataset prep, architecture, and training parameters specified in the paper.   
+ 
 {% highlight python %}
 def model_fn(x):
   '''x is a placeholder'''
@@ -41,3 +42,4 @@ def train():
 {% endhighlight %}
 
 [paper]: https://arxiv.org/pdf/1606.03798.pdf
+[github]: https://github.com/ekrim/deep-homography
