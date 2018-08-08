@@ -26,6 +26,13 @@ Notes:
 - The authors did not mention scaling the corner perturbations, but I found dividing by 32 and putting a tanh layer on the output of the network was necessary for training.
 
 I implemented the regression form of their network, and followed the dataset prep, architecture, and training parameters specified in the paper.   
+
+![good performance on test image](assets/good_img_1.png)
+
+![good performance on test image](assets/good_img_2.png)
+
+![bad performance on test image](assets/bad_img_1.png)
+
  
 {% highlight python %}
 def model_fn(x):
