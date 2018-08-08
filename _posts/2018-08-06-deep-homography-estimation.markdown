@@ -5,7 +5,7 @@ date:   2018-08-06 23:10:45 -0800
 categories: computer vision,pytorch,homography 
 ---
 
-In 2016, Magic Leap released [*Deep Image Homography Estimation*][paper], in which a homography is estimated with a neural network instead of the traditional geometric approach. No code was released, so I was curious to play around with it. My code can be found on [__github__][github].
+In 2016, Magic Leap released [*Deep Image Homography Estimation*][paper], in which a homography is estimated with a neural network instead of the traditional geometric approach. No code was released, so I was curious to play around with it. My code can be found on [__GitHub__][github].
 
 A homography defines a transformation between two planes, including:
 - An image plane and a planar object.
@@ -27,26 +27,16 @@ Notes:
 
 I implemented the regression form of their network, and followed the dataset prep, architecture, and training parameters specified in the paper.   
 
-![good performance on test image](assets/good_img_1.png){:class="img-responsive"}
+On the data prepared according to the procedure outlined in the paper, the network does quite well. Below I show the original and warped patch, which are fed to the network as a two channel 128x128 image. The predicted homography for this pair is applied to the original image to produce the image in the third column. The image warped by the predicted homography is very similar to the image warped by the true homography.
 
-![good performance on test image](assets/good_img_2.png){:class="img-responsive"}
+![good performance on test image](/assets/good_img_1.png){:class="img-responsive"}
 
-![bad performance on test image](assets/bad_img_1.png){:class="img-responsive"}
+![good performance on test image](/assets/good_img_2.png){:class="img-responsive"}
 
- 
-{% highlight python %}
-def model_fn(x):
-  '''x is a placeholder'''
-  x = tf.layers.dense(x, 10, activation=tf.nn.softmax)
+The problem with the data generation is that it treats every object in the image as being coplanar. This produces some unnatural images:
+![bad performance on test image](/assets/bad_img_1.png){:class="img-responsive"}
 
-def train():
-  input_tens = tf.placeholder(tf.float32, (None, 784))
-  output_tens = model_fn(input_tens)
- 
-  y_target = tf.placeholder(tf.float32, (None, 10))
-
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+This makes me doubt that this network will work for any real datasets, outside of very special circumstances.
 
 [paper]: https://arxiv.org/pdf/1606.03798.pdf
 [github]: https://github.com/ekrim/deep-homography
