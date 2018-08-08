@@ -27,11 +27,11 @@ Notes:
 
 I implemented the regression form of their network, and followed the dataset prep, architecture, and training parameters specified in the paper.   
 
-![good performance on test image](assets/good_img_1.png)
+![good performance on test image](assets/good_img_1.png){:class="img-responsive"}
 
-![good performance on test image](assets/good_img_2.png)
+![good performance on test image](assets/good_img_2.png){:class="img-responsive"}
 
-![bad performance on test image](assets/bad_img_1.png)
+![bad performance on test image](assets/bad_img_1.png){:class="img-responsive"}
 
  
 {% highlight python %}
