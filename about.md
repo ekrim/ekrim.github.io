@@ -4,6 +4,6 @@ title: About
 permalink: /about/
 ---
 
-I am a machine learning researcher with 8 years of experience. I have worked on computer vision and object tracking, generative models, recurrent networks, reinforcement learning, constrained clustering, active learning, and ML workflow tools.
+10 years of experience in software engineering and algorithm design for deep learning, signal proessing, and estimation. I specialize in computer vision and tracking problems.
 
 [Resume](/assets/Kriminger_Resume.pdf)
