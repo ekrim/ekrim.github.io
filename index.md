@@ -1,6 +1,9 @@
 ---
-# You don't need to edit this file, it's empty on purpose.
-# Edit theme's home layout instead if you wanna make some changes
-# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-layout: home
+layout: default
+title: Home
+permalink: /
 ---
+
+10 years of experience in software engineering and algorithm design for deep learning, signal proessing, and estimation. I specialize in computer vision and tracking problems.
+
+[Resume](/assets/Kriminger_Resume.pdf)

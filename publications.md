@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default
 title: Publications
 permalink: /publications/
 ---
@@ -11,14 +11,6 @@ permalink: /publications/
   <small>University of Florida dissertation, Fall 2015</small>
 
 ### Journal
-
--  Constrained clustering under uncertainty  
-  <small>**E. Kriminger**, J. Cobb, and J. Principe </small>  
-  <small>*Journal of Machine Learning Research (JMLR)*, (submitted)</small>
-
--  Active hierarchical clustering without must-link constraints  
-  <small>**E. Kriminger**, J. Cobb, and J. Principe </small>  
-  <small>*IEEE Trans. on Pattern Analysis and Machine Intelligence (PAMI)*, (submitted)</small>
 
 -  Online active learning for automatic target recognition  
   <small>**E. Kriminger**, J. Cobb, and J. Principe </small>  
