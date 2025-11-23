@@ -45,7 +45,7 @@ I'm now actively seeking roles in SF or remote, preferably in the domain of AI/M
     .attr("width", width)
     .attr("height", height)
     .attr("viewBox", `0 0 ${width} ${height}`)
-    .attr("style", "max-width: 100%; height: auto;");
+    .attr("style", "max-width: 100%; height: auto; border: 1px solid #ddd;");
 
   // Colors
   const colorA = "#ff6b6b"; // Red for A
@@ -59,6 +59,10 @@ I'm now actively seeking roles in SF or remote, preferably in the domain of AI/M
   const matrixBY = matrixAY;
   const matrixCX = matrixBX + N * cellSize + spacing;
   const matrixCY = matrixAY;
+
+  // Debug: Calculate and log the actual width needed
+  const totalWidth = matrixCX + (N * cellSize) + 50;
+  console.log(`Mobile: ${isMobile}, Screen width: ${width}, Required width: ${totalWidth}, Cell size: ${cellSize}`);
 
   // Create Matrix A
   const matrixAGroup = svg.append("g")
@@ -226,6 +230,8 @@ I'm now actively seeking roles in SF or remote, preferably in the domain of AI/M
   let phase = 0; // 0: load tiles, 1-BK: compute steps, then repeat
   let tileK = 0; // Which tile along K dimension (0, 1, 2)
   const numKTiles = K / BK; // 3 tiles
+  let totalKSteps = 0; // Track total K steps across all tiles (0 to numKTiles * BK)
+  const maxKSteps = numKTiles * BK; // Total number of K steps = 12
 
   function animate() {
     let duration = 1000;
@@ -257,9 +263,10 @@ I'm now actively seeking roles in SF or remote, preferably in the domain of AI/M
       // Phase 1: Start computing - show thread output and initial registers
       statusText.text("One thread's output: accumulate outer products in registers");
 
-      // C block should already be visible from phase 0, just ensure it's at 0.3
+      // Start with lighter opacity for thread C square
+      const cOpacity = 0.3 + (totalKSteps / maxKSteps) * 0.5; // Ranges from 0.3 to 0.8
       threadCSquare
-        .attr("opacity", 0.7);
+        .attr("opacity", cOpacity);
 
       threadARect
         .attr("x", tileK * BK * cellSize)
@@ -287,6 +294,13 @@ I'm now actively seeking roles in SF or remote, preferably in the domain of AI/M
         .transition().duration(duration)
         .attr("y", tileK * BK * cellSize + k * cellSize);
 
+      // Gradually darken the thread C square with each step
+      totalKSteps++;
+      const cOpacity = 0.3 + (totalKSteps / maxKSteps) * 0.5; // Ranges from 0.3 to 0.8
+      threadCSquare
+        .transition().duration(duration)
+        .attr("opacity", cOpacity);
+
       phase++;
     } else {
       // After sliding, hide thread rectangles before moving tiles
@@ -302,6 +316,7 @@ I'm now actively seeking roles in SF or remote, preferably in the domain of AI/M
           // Reset everything to initial state
           tileK = 0;
           phase = 0;
+          totalKSteps = 0; // Reset the K step counter
 
           blockATile
             .attr("x", 0)
