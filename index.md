@@ -149,7 +149,7 @@ I'm now actively seeking roles in SF or remote, preferably in the domain of AI/M
     .attr("width", BN * cellSize)
     .attr("height", BM * cellSize)
     .attr("fill", colorC)
-    .attr("opacity", 0.3)
+    .attr("opacity", 0)
     .attr("stroke", "#333")
     .attr("stroke-width", 2);
 
@@ -241,6 +241,11 @@ I'm now actively seeking roles in SF or remote, preferably in the domain of AI/M
         .transition().duration(duration)
         .attr("opacity", 0.4);
 
+      // Fade in C block tile after a delay
+      blockCRect
+        .transition().delay(duration * 0.5).duration(duration * 0.5)
+        .attr("opacity", 0.3);
+
       threadCSquare.attr("opacity", 0);
       threadARect.attr("opacity", 0);
       threadBRect.attr("opacity", 0);
@@ -250,6 +255,7 @@ I'm now actively seeking roles in SF or remote, preferably in the domain of AI/M
       // Phase 1: Start computing - show thread output and initial registers
       statusText.text("One thread's output: accumulate outer products in registers");
 
+      // C block should already be visible from phase 0, just ensure it's at 0.3
       threadCSquare
         .attr("opacity", 0.7);
 
