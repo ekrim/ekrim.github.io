@@ -35,8 +35,10 @@ I'm now actively seeking roles in SF or remote, preferably in the domain of AI/M
   // Thread output dimensions
   const TM = 2, TN = 2;
 
-  const cellSize = 20;
-  const spacing = 40;
+  // Adjust cell size and spacing for mobile
+  const isMobile = width < 600;
+  const cellSize = isMobile ? 12 : 20;
+  const spacing = isMobile ? 20 : 40;
 
   const svg = d3.select("#matmul-viz")
     .append("svg")
@@ -51,7 +53,7 @@ I'm now actively seeking roles in SF or remote, preferably in the domain of AI/M
   const colorC = "#9b59b6"; // Purple for C
 
   // Position matrices
-  const matrixAX = 50;
+  const matrixAX = isMobile ? 10 : 50;
   const matrixAY = 100;
   const matrixBX = matrixAX + K * cellSize + spacing;
   const matrixBY = matrixAY;
@@ -66,7 +68,7 @@ I'm now actively seeking roles in SF or remote, preferably in the domain of AI/M
     .attr("x", (K * cellSize) / 2)
     .attr("y", -10)
     .attr("text-anchor", "middle")
-    .attr("font-size", "18px")
+    .attr("font-size", isMobile ? "14px" : "18px")
     .attr("font-weight", "bold")
     .text("A");
 
@@ -89,7 +91,7 @@ I'm now actively seeking roles in SF or remote, preferably in the domain of AI/M
     .attr("x", (N * cellSize) / 2)
     .attr("y", -10)
     .attr("text-anchor", "middle")
-    .attr("font-size", "18px")
+    .attr("font-size", isMobile ? "14px" : "18px")
     .attr("font-weight", "bold")
     .text("B");
 
@@ -112,7 +114,7 @@ I'm now actively seeking roles in SF or remote, preferably in the domain of AI/M
     .attr("x", (N * cellSize) / 2)
     .attr("y", -10)
     .attr("text-anchor", "middle")
-    .attr("font-size", "18px")
+    .attr("font-size", isMobile ? "14px" : "18px")
     .attr("font-weight", "bold")
     .text("C = A * B");
 
@@ -216,7 +218,7 @@ I'm now actively seeking roles in SF or remote, preferably in the domain of AI/M
     .attr("x", width / 2)
     .attr("y", 30)
     .attr("text-anchor", "middle")
-    .attr("font-size", "24px")
+    .attr("font-size", isMobile ? "12px" : "24px")
     .attr("font-weight", "normal")
     .text("");
 
